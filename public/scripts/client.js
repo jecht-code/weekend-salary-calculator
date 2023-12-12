@@ -22,6 +22,8 @@ function submitFormEvent(event) {
 
     console.log(addUpSalary(empDataObj));
 
+    overBudget();
+
     document.querySelector('#totalSalary').innerHTML = `<p>${addUpSalary(empDataObj)}</p>`
     // Find the tbody on the page so that we can append to it
     let employeeTable = document.querySelector('#employeeData');
@@ -36,7 +38,6 @@ function submitFormEvent(event) {
             <td><button onclick="onDeleteRow(event)">Delete</button></td>
         </tr>
     `;
-
     //clear Input fields after submitting them.
     let allInputs = document.querySelectorAll('input');
     allInputs.forEach(singleInput => singleInput.value ='');
@@ -56,5 +57,12 @@ function addUpSalary(empobj) {
     return sum;
   };
  
-
+function overBudget() {
+    let currentBudget = addUpSalary(empDataObj);
+    if (currentBudget > 20000) {
+        let elementToChange = document.getElementById("foot");
+        elementToChange.classList.add("redFill");
+        
+    }
+}
 
